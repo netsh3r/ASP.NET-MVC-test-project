@@ -1,0 +1,53 @@
+﻿@using NetElement.Entities
+@using NetElement.Web.Models
+@model EmployeesModel
+
+@{
+	ViewBag.Title = "Список сотрудников";
+	int i = 0;
+}
+
+<div class="container center-block">
+	<h1>
+		Список сотрудников
+	</h1>
+	<table class="table table-striped table-sm">
+		<thead>
+			<tr>
+				<th>Фамилия</th>
+				<th>Имя</th>
+				<th>Возраст</th>
+				<th>Отдел</th>
+				<th></th>
+			</tr>
+		</thead>
+		
+		<tbody>
+			@foreach (var emp in Model.Employees)
+			{
+				using (Html.BeginForm("Info", "Employee", new { id = emp.Id }))
+				{
+					<tr>
+						<td>
+							@emp.LastName
+						</td>
+						<td>
+							@emp.Name
+						</td>
+						<td>
+							@emp.Age
+						</td>
+						<td>
+							@Model.Departments.FirstOrDefault(t => t.Id == emp.DepartmentId.Value).Name
+						</td>
+						<td>
+							<input type="submit" value="Подробнее" style="margin-top:-5px; margin-right:10px; float:right;"/>
+						</td>
+					</tr>
+				}
+			}
+		</tbody>
+	</table>
+</div>
+
+

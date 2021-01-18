@@ -1,0 +1,8 @@
+*/bin
+*/obj
+*/.idea
+*.dll
+*.dll.*
+*/bin/Debug
+/NetElement.Web/packages
+/.idea

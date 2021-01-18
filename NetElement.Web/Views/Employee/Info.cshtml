@@ -1,0 +1,56 @@
+﻿@using NetElement.Entities;
+@using NetElement.Entities.Enums;
+@model Employee
+
+<div class="container" style="margin-top:25px;font-size:20px;">
+	<div class="row">
+		<div class="col-sm-2">
+			@Html.LabelFor(t => t.Name, "Имя")
+		</div>
+		<div class="col-sm-2">
+			@Model.Name
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-sm-2">
+			@Html.LabelFor(t => t.LastName, "Фамилия")
+		</div>
+		<div class="col-sm-2">
+			@Model.LastName
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-sm-2">
+			@Html.LabelFor(t => t.Age, "Возраст")
+		</div>
+		<div class="col-sm-2">
+			@Model.Age
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-sm-2">
+			@Html.LabelFor(t => t.Sex, "Пол")
+		</div>
+		<div class="col-sm-2">
+			@(Model.Sex == Sex.Woman?"Женщина" : "Мужчина")
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-sm-2">
+			@Html.LabelFor(t => t.Department.Name, "Отдел")
+		</div>
+		<div class="col-sm-2">
+			@Model.Department.Name
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-sm-2">
+			@Html.LabelFor(t => t.WorkExperience.ProgrammingLanguage.Name, "Язык программирования")
+		</div>
+		<div class="col-sm-2">
+			@Model.WorkExperience.ProgrammingLanguage.Name
+		</div>
+	</div>
+	@Html.ActionLink("Удалить", "Delete", new { id = Model.Id }, new { @Class = "btn btn-danger" })
+	@Html.ActionLink("Отредактировать", "Edit", new { id = Model.Id }, new { @Class = "btn btn-success" })
+</div>

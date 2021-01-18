@@ -1,0 +1,59 @@
+﻿
+@{
+	ViewBag.Title = "Добавление сотрудника";
+}
+@using NetElement.Web.Models
+@using NetElement.Entities.Enums
+
+@model AddEmployeeModel
+<div class="row g-3">
+	<div style="margin-top:25px" class="col-md-7 col-lg-8">
+		<h1>
+			Создать сотрудника
+		</h1>
+		@using (Html.BeginForm("Add", "Employee", FormMethod.Post))
+		{
+			@Html.AntiForgeryToken()
+				<div>
+					<div class="row g-3">
+						<div class="col-md-4">
+							@Html.LabelFor(t => t.Employee.Name, "Имя", new { @class = "form-label" })
+							@Html.EditorFor(t => t.Employee.Name, new { htmlAttributes = new { @class = "form-control", autocomplete = "off" } })
+						</div>
+						<div class="col-md-4">
+							@Html.LabelFor(t => t.Employee.LastName, "Фамилия", new { @class = "form-label" })
+							@Html.EditorFor(t => t.Employee.LastName, new { htmlAttributes = new { @class = "form-control", autocomplete = "off" } })
+						</div>
+						<div class="col-md-4">
+							@Html.LabelFor(t => t.Employee.Sex, "Пол", new { @class = "form-label" })
+							@Html.EnumDropDownListFor(t=> t.Employee.Sex, new { @class = "form-control"})
+						</div>
+						<div class="col-md-5">
+							@Html.LabelFor(t => t.DepratmentId, "Отдел", new { @class = "form-label" })
+							@Html.DropDownListFor(t => t.DepratmentId, new SelectList(
+									Model.Departments.Select(d => new { Value = d.Id.ToString(), Text = d.Name }),
+									"Value", "Text"
+								), new { @class = "form-control" })
+						</div>
+						<div class="col-md-4">
+							@Html.LabelFor(t => t.LanguageId, "Язык программирования", new { @class = "form-label" })
+							@Html.DropDownListFor(t => t.LanguageId, new SelectList(
+									Model.Languages.Select(d => new { Value = d.Id.ToString(), Text = d.Name }),
+									"Value", "Text"
+								), new { @class = "form-control" })
+						</div>
+						<div class="col-md-3">
+							@Html.LabelFor(t => t.Employee.Age, "Возраст", new { @class = "form-label" })
+							@Html.EditorFor(t => t.Employee.Age, new { htmlAttributes = new { @class = "form-control" } })
+						</div>
+					</div>
+
+					@Html.HiddenFor(t => t.Departments)
+				</div>
+				<p><input type="submit" value="Отправить" class="btn btn-success" style="margin-top:20px;" /></p>
+		}
+
+	</div>
+</div>
+
+
